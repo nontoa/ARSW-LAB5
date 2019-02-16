@@ -62,19 +62,12 @@ public class CinemaServices {
 		this.cine.setName(cinema);
 		this.cf.setDate(date);
 		this.cf.getMovie().setName(movieName);*/
-		Cinema cs = cps.getCinema(cinema);
-		List<CinemaFunction> func = cs.getFunctions();
-		for(CinemaFunction cf : cps.getCinema(cinema).getFunctions()) {
-			if(cf.getMovie().equals(movieName) && cf.getDate().equals(date)) {
-				cf.buyTicket(row, col);
-				break;
-			}
-		}
+		cps.buyTicket(row, col, cinema, date, movieName);
 
 	}
 
 	public List<CinemaFunction> getFunctionsbyCinemaAndDate(String cinema, String date) {
-		List<CinemaFunction> funcionesTotales = null;
+		/*List<CinemaFunction> funcionesTotales = null;
 		try {
 			funcionesTotales = getCinemaByName(cinema).getFunctions();
 		} catch (CinemaException e) {
@@ -87,7 +80,8 @@ public class CinemaServices {
 				escogidos.add(cf);
 
 		}
-		return escogidos;
+		return escogidos;*/
+		return getFunctionsbyCinemaAndDate(cinema, date);
 	}
 
 	public CinemaPersitence getCps() {

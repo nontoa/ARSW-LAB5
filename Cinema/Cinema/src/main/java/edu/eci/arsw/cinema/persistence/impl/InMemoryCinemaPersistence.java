@@ -46,17 +46,43 @@ public class InMemoryCinemaPersistence implements CinemaPersitence{
 
     @Override
     public void buyTicket(int row, int col, String cinema, String date, String movieName) throws CinemaException {
-        try {
+        /*try {
 			cs.buyTicket(row, col, cinema, date, movieName);
 		} catch (CinemaPersistenceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}*/
+		try {
+			for(CinemaFunction cf : this.getCinema(cinema).getFunctions()) {
+				if(cf.getMovie().equals(movieName) && cf.getDate().equals(date)) {
+					cf.buyTicket(row, col);
+					break;
+				}
+			}
+		} catch (CinemaPersistenceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
     }
 
     @Override
     public List<CinemaFunction> getFunctionsbyCinemaAndDate(String cinema, String date) {
-        return cs.getFunctionsbyCinemaAndDate(cinema, date);
+        //return cs.getFunctionsbyCinemaAndDate(cinema, date);
+    	List<CinemaFunction> funcionesTotales = null;
+		try {
+			funcionesTotales = getCinema(cinema).getFunctions();
+		} catch (CinemaPersistenceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<CinemaFunction> escogidos = new ArrayList();
+		for (CinemaFunction cf : funcionesTotales) {
+			if (cf.getDate().equals(date))
+				escogidos.add(cf);
+
+		}
+		return escogidos;
         
     }
 

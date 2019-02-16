@@ -75,7 +75,7 @@ public class InMemoryPersistenceTest {
 		}
 
 	}
-
+	
 	@Test
 	public void getCinemaByNameTest() throws CinemaException {
 		InMemoryCinemaPersistence ipct = new InMemoryCinemaPersistence();
@@ -97,6 +97,7 @@ public class InMemoryPersistenceTest {
 		assertEquals(cs.getCinemaByName(c.getName()), c);
 
 	}
+	
 	@Test
 	public void  buyTicketTest() {
 		InMemoryCinemaPersistence ipct = new InMemoryCinemaPersistence();
@@ -157,7 +158,7 @@ public class InMemoryPersistenceTest {
 			e1.printStackTrace();
 		}
 		cs.setCps(ipct);
-		assertEquals(2, cs.getFunctionsbyCinemaAndDate(c.getName(), functionDate).size());
+		assertEquals(2, ipct.getFunctionsbyCinemaAndDate(c.getName(), functionDate).size());
 
 	}
 }
