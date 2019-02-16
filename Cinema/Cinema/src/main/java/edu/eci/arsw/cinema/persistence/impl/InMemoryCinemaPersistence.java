@@ -11,6 +11,8 @@ import edu.eci.arsw.cinema.model.Movie;
 import edu.eci.arsw.cinema.persistence.CinemaException;
 import edu.eci.arsw.cinema.persistence.CinemaPersistenceException;
 import edu.eci.arsw.cinema.persistence.CinemaPersitence;
+import edu.eci.arsw.cinema.services.CinemaServices;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,11 +27,12 @@ import org.springframework.stereotype.Service;
 
 @Service("Bean1")
 public class InMemoryCinemaPersistence implements CinemaPersitence{
-    
+    public CinemaServices cs;
     private final Map<String,Cinema> cinemas=new HashMap<>();
 
     public InMemoryCinemaPersistence() {
         //load stub data
+    	cs = new CinemaServices();
         String functionDate = "2018-12-18 15:30";
         List<CinemaFunction> functions= new ArrayList<>();
         CinemaFunction funct1 = new CinemaFunction(new Movie("SuperHeroes Movie","Action"),functionDate);
@@ -42,12 +45,13 @@ public class InMemoryCinemaPersistence implements CinemaPersitence{
 
     @Override
     public void buyTicket(int row, int col, String cinema, String date, String movieName) throws CinemaException {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        cs.buyTicket(row, col, cinema, date, movieName);
     }
 
     @Override
     public List<CinemaFunction> getFunctionsbyCinemaAndDate(String cinema, String date) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        return cs.getFunctionsbyCinemaAndDate(cinema, date);
+        
     }
 
     @Override

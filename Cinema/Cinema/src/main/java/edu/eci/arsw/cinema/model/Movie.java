@@ -6,18 +6,18 @@
 package edu.eci.arsw.cinema.model;
 
 /**
- *
  * @author cristian
  */
 public class Movie {
     private String name;
     private String genre;
-    
-    public Movie(){}
-    
-    public Movie(String name, String genre){
-        this.name=name;
-        this.genre=genre;
+
+    public Movie() {
+    }
+
+    public Movie(String name, String genre) {
+        this.name = name;
+        this.genre = genre;
     }
 
     public String getName() {

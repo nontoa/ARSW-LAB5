@@ -9,24 +9,24 @@ import java.util.List;
 
 
 /**
- *
  * @author cristian
  */
 
 public class Cinema {
     private String name;
-    private List<CinemaFunction> functions; 
-    
-    
-    public Cinema(){}
-    
-    public Cinema(String name,List<CinemaFunction> functions){
-        this.name=name;
-        this.functions=functions;
+    private List<CinemaFunction> functions;
+
+
+    public Cinema() {
     }
-    
-    public Cinema(String name){
-        this.name=name;
+
+    public Cinema(String name, List<CinemaFunction> functions) {
+        this.name = name;
+        this.functions = functions;
+    }
+
+    public Cinema(String name) {
+        this.name = name;
     }
 
     public String getName() {
