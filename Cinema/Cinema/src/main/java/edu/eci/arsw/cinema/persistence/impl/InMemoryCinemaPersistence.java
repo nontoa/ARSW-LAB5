@@ -27,6 +27,7 @@ import org.springframework.stereotype.Service;
 
 @Service("Bean1")
 public class InMemoryCinemaPersistence implements CinemaPersitence{
+	
     public CinemaServices cs;
     private final Map<String,Cinema> cinemas=new HashMap<>();
 
@@ -45,7 +46,12 @@ public class InMemoryCinemaPersistence implements CinemaPersitence{
 
     @Override
     public void buyTicket(int row, int col, String cinema, String date, String movieName) throws CinemaException {
-        cs.buyTicket(row, col, cinema, date, movieName);
+        try {
+			cs.buyTicket(row, col, cinema, date, movieName);
+		} catch (CinemaPersistenceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     @Override
