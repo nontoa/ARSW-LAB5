@@ -57,30 +57,13 @@ public class CinemaServices {
 		return cine;
 	}
 
-	public void buyTicket(int row, int col, String cinema, String date, String movieName) throws CinemaException, CinemaPersistenceException {
-		/*this.cf.buyTicket(row, col);
-		this.cine.setName(cinema);
-		this.cf.setDate(date);
-		this.cf.getMovie().setName(movieName);*/
+	public void buyTicket(int row, int col, String cinema, String date, String movieName)
+			throws CinemaException, CinemaPersistenceException {
 		cps.buyTicket(row, col, cinema, date, movieName);
 
 	}
 
 	public List<CinemaFunction> getFunctionsbyCinemaAndDate(String cinema, String date) {
-		/*List<CinemaFunction> funcionesTotales = null;
-		try {
-			funcionesTotales = getCinemaByName(cinema).getFunctions();
-		} catch (CinemaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		List<CinemaFunction> escogidos = new ArrayList();
-		for (CinemaFunction cf : funcionesTotales) {
-			if (cf.getDate().equals(date))
-				escogidos.add(cf);
-
-		}
-		return escogidos;*/
 		return getFunctionsbyCinemaAndDate(cinema, date);
 	}
 
