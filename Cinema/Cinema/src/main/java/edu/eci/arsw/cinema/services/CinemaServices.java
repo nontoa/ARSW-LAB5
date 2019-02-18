@@ -66,17 +66,14 @@ public class CinemaServices {
 		return cine;
 	}
 
-	public void showFilter(String cine, String date,String filtroes) {
+	public  List<Movie> showFilter(String cine, String date,String filtroes) {
 		
 		if(filtro.getClass().getName().equals("Filteredbygender")) {
-			for(Movie mv:filtro.filtreType(cine, date, filtroes,cps)){
-				System.out.println(mv.getName());
-			}
+			return filtro.filtreType(cine, date, filtroes,cps);
+			
 		}
 		else {
-			for(Movie mv:filtro.filtreType(cine, date, filtroes,cps)){
-				System.out.println(mv.getName());
-			}
+			return filtro.filtreType(cine, date, filtroes,cps);
 		}
 		
 		

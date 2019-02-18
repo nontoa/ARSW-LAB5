@@ -25,7 +25,7 @@ import org.junit.Test;
  * @author cristian
  */
 public class InMemoryPersistenceTest {
-	
+
 	@Test
 	public void saveNewAndLoadTest() throws CinemaPersistenceException {
 		InMemoryCinemaPersistence ipct = new InMemoryCinemaPersistence();
@@ -75,7 +75,7 @@ public class InMemoryPersistenceTest {
 		}
 
 	}
-	
+
 	@Test
 	public void getCinemaByNameTest() throws CinemaException {
 		InMemoryCinemaPersistence ipct = new InMemoryCinemaPersistence();
@@ -97,9 +97,9 @@ public class InMemoryPersistenceTest {
 		assertEquals(cs.getCinemaByName(c.getName()), c);
 
 	}
-	
+
 	@Test
-	public void  buyTicketTest() {
+	public void buyTicketTest() {
 		InMemoryCinemaPersistence ipct = new InMemoryCinemaPersistence();
 		String functionDate = "2018-12-18 15:30";
 		List<CinemaFunction> functions = new ArrayList<>();
@@ -127,10 +127,10 @@ public class InMemoryPersistenceTest {
 		}
 		boolean flag = false;
 		try {
-			for(CinemaFunction cf : cs.getCps().getCinema("Movies Medellin").getFunctions()) {
-				if(cf.getMovie().equals("The Night 2") && cf.getDate().equals("2018-12-18 15:30")) {
+			for (CinemaFunction cf : cs.getCps().getCinema("Movies Medellin").getFunctions()) {
+				if (cf.getMovie().equals("The Night 2") && cf.getDate().equals("2018-12-18 15:30")) {
 					assertEquals(cf.getSeats().get(2).get(3), true);
-					
+
 				}
 			}
 		} catch (CinemaPersistenceException e) {
@@ -139,7 +139,7 @@ public class InMemoryPersistenceTest {
 		}
 
 	}
-	
+
 	@Test
 	public void getFunctionsbyCinemaAndDateTest() {
 		InMemoryCinemaPersistence ipct = new InMemoryCinemaPersistence();
@@ -161,4 +161,20 @@ public class InMemoryPersistenceTest {
 		assertEquals(2, ipct.getFunctionsbyCinemaAndDate(c.getName(), functionDate).size());
 
 	}
+
+	@Test
+	public void getFilterbyGenerer() {
+		InMemoryCinemaPersistence ipct = new InMemoryCinemaPersistence();
+		String functionDate = "2018-12-18 15:30";
+		CinemaFunction funct1 = new CinemaFunction(new Movie("SuperHeroes Movie", "Action"), functionDate);
+		CinemaFunction funct2 = new CinemaFunction(new Movie("The Night", "Horror"), functionDate);
+		List<CinemaFunction> functions = new ArrayList<>();
+		functions.add(funct1);
+		functions.add(funct2);
+		Cinema c = new Cinema("cinemaX", functions);
+		CinemaServices cs = new CinemaServices();
+		assertEquals(1,cs.showFilter("cinemaX",functionDate, "Horror").size());
+
+	}
+
 }
