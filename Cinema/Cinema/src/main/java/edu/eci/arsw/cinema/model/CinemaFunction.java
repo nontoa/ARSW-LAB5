@@ -12,9 +12,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 /**
  * @author cristian
  */
+
 public class CinemaFunction {
 
     private Movie movie;

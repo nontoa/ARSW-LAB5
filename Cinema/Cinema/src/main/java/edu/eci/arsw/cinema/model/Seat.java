@@ -5,9 +5,12 @@
  */
 package edu.eci.arsw.cinema.model;
 
+import org.springframework.stereotype.Service;
+
 /**
  * @author cristian
  */
+
 public class Seat {
 
     private int row;

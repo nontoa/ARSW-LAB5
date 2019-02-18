@@ -28,13 +28,18 @@ public class CinemaServices {
 
 	@Autowired
 	@Qualifier("Bean1")
-	CinemaPersitence cps;
+	CinemaPersitence cps =null;
 
 	public CinemaFunction cf;
 	public Cinema cine;
 
 	public void addNewCinema(Cinema c) {
-
+		try {
+			cps.saveCinema(c);
+		} catch (CinemaPersistenceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public Set<Cinema> getAllCinemas() {
@@ -64,7 +69,7 @@ public class CinemaServices {
 	}
 
 	public List<CinemaFunction> getFunctionsbyCinemaAndDate(String cinema, String date) {
-		return getFunctionsbyCinemaAndDate(cinema, date);
+		return cps.getFunctionsbyCinemaAndDate(cinema, date);
 	}
 
 	public CinemaPersitence getCps() {

@@ -7,6 +7,8 @@ package edu.eci.arsw.cinema.model;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 
 /**
  * @author cristian
