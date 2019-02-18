@@ -11,6 +11,7 @@ import edu.eci.arsw.cinema.model.Movie;
 import edu.eci.arsw.cinema.persistence.CinemaException;
 import edu.eci.arsw.cinema.persistence.CinemaPersistenceException;
 import edu.eci.arsw.cinema.persistence.CinemaPersitence;
+import edu.eci.arsw.filter.FilterFilm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,10 @@ public class CinemaServices {
 	@Autowired
 	@Qualifier("Bean1")
 	CinemaPersitence cps =null;
-
+	
+	@Autowired
+	@Qualifier("Bean3")
+	FilterFilm  filtro;
 	public CinemaFunction cf;
 	public Cinema cine;
 
@@ -62,6 +66,21 @@ public class CinemaServices {
 		return cine;
 	}
 
+	public void showFilter(String cine, String date,String filtroes) {
+		
+		if(filtro.getClass().getName().equals("Filteredbygender")) {
+			for(Movie mv:filtro.filtreType(cine, date, filtroes,cps)){
+				System.out.println(mv.getName());
+			}
+		}
+		else {
+			for(Movie mv:filtro.filtreType(cine, date, filtroes,cps)){
+				System.out.println(mv.getName());
+			}
+		}
+		
+		
+	}
 	public void buyTicket(int row, int col, String cinema, String date, String movieName)
 			throws CinemaException, CinemaPersistenceException {
 		cps.buyTicket(row, col, cinema, date, movieName);
