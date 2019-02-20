@@ -37,13 +37,6 @@ public class Main {
 		for(CinemaFunction cf: sc.getFunctionsbyCinemaAndDate("cinemaX", "2018-12-18 15:30")) {
 			System.out.println(cf.getMovie().getName());
 		}
-		System.out.println("Viendo una lista de peliculas por fecha");
-		System.out.println("|||--------------------------------------------|||");
-			
-		
-		System.out.println("--------------Realizando Filtros-------------------");
-		sc.showFilter("cinemaX",functionDate, "Horror");
-
 	}
 
 }
