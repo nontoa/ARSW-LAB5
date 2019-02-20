@@ -29,11 +29,11 @@ public class CinemaServices {
 
 	@Autowired
 	@Qualifier("Bean1")
-	CinemaPersitence cps =null;
+	public CinemaPersitence cps =null;
 	
 	@Autowired
 	@Qualifier("Bean3")
-	FilterFilm  filtro;
+	public FilterFilm  filtro;
 	public CinemaFunction cf;
 	public Cinema cine;
 
@@ -79,8 +79,13 @@ public class CinemaServices {
 		
 	}
 	public void buyTicket(int row, int col, String cinema, String date, String movieName)
-			throws CinemaException, CinemaPersistenceException {
-		cps.buyTicket(row, col, cinema, date, movieName);
+			 {
+		try {
+			cps.buyTicket(row, col, cinema, date, movieName);
+		} catch (CinemaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

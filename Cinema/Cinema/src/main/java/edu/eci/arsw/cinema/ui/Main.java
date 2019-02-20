@@ -21,7 +21,7 @@ public class Main {
 		CinemaServices sc = ac.getBean(CinemaServices.class);
 		String functionDate = "2018-12-18 15:30";
 		List<CinemaFunction> functions = new ArrayList<>();
-		CinemaFunction funct1 = new CinemaFunction(new Movie("SuperHeroes Movie", "Action"), functionDate);
+		CinemaFunction funct1 = new CinemaFunction(new Movie("SuperHeroes Movie", "Horror"), functionDate);
 		CinemaFunction funct2 = new CinemaFunction(new Movie("The Night", "Horror"), functionDate);
 		functions.add(funct1);
 		functions.add(funct2);
@@ -39,8 +39,7 @@ public class Main {
 		}
 		System.out.println("Viendo una lista de peliculas por fecha");
 		System.out.println("|||--------------------------------------------|||");
-		
-		
+			
 		
 		System.out.println("--------------Realizando Filtros-------------------");
 		sc.showFilter("cinemaX",functionDate, "Horror");

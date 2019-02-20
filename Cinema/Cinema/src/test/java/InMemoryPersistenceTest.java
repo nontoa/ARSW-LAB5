@@ -6,11 +6,14 @@ import edu.eci.arsw.cinema.persistence.CinemaException;
 import edu.eci.arsw.cinema.persistence.CinemaPersistenceException;
 import edu.eci.arsw.cinema.persistence.impl.InMemoryCinemaPersistence;
 import edu.eci.arsw.cinema.services.CinemaServices;
+import edu.eci.arsw.filter.Filteredbygender;
+import edu.eci.arsw.filter.Filteringbyavailability;
 
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import org.junit.Test;
 
@@ -116,15 +119,7 @@ public class InMemoryPersistenceTest {
 			e1.printStackTrace();
 		}
 		cs.setCps(ipct);
-		try {
-			cs.buyTicket(2, 3, c.getName(), "2018-12-18 15:30", "The Night 2");
-		} catch (CinemaPersistenceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CinemaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		cs.buyTicket(2, 3, c.getName(), "2018-12-18 15:30", "The Night 2");
 		boolean flag = false;
 		try {
 			for (CinemaFunction cf : cs.getCps().getCinema("Movies Medellin").getFunctions()) {
@@ -168,13 +163,35 @@ public class InMemoryPersistenceTest {
 		String functionDate = "2018-12-18 15:30";
 		CinemaFunction funct1 = new CinemaFunction(new Movie("SuperHeroes Movie", "Action"), functionDate);
 		CinemaFunction funct2 = new CinemaFunction(new Movie("The Night", "Horror"), functionDate);
+		
 		List<CinemaFunction> functions = new ArrayList<>();
 		functions.add(funct1);
 		functions.add(funct2);
 		Cinema c = new Cinema("cinemaX", functions);
 		CinemaServices cs = new CinemaServices();
-		assertEquals(1,cs.showFilter("cinemaX",functionDate, "Horror").size());
+		cs.setCps(ipct);
+		cs.filtro=new Filteredbygender();
+		assertEquals(1, cs.showFilter("cinemaX", functionDate, "Horror").size());
 
 	}
+	
+	@Test
+	public void getFilterbyAvailabity() {
+		InMemoryCinemaPersistence ipct = new InMemoryCinemaPersistence();
+		String functionDate = "2018-12-18 15:30";
+		CinemaFunction funct1 = new CinemaFunction(new Movie("SuperHeroes Movie", "Action"), functionDate);
+		CinemaFunction funct2 = new CinemaFunction(new Movie("The Night", "Horror"), functionDate);
+		List<CinemaFunction> functions = new ArrayList<>();
+		functions.add(funct1);
+		functions.add(funct2);
+		Cinema c = new Cinema("cinemaX", functions);
+		CinemaServices cs = new CinemaServices();
+		cs.setCps(ipct);
+		cs.filtro=new Filteringbyavailability();
+		//ipct.saveCinema(c);
+		cs.buyTicket(2, 3, "cinemaX", functionDate, "The Night");
+		assertTrue(cs.showFilter("cinemaX", functionDate, "2").size()>=0);
 
+	}
+	
 }
